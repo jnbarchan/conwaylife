@@ -30,7 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
     speedSlider->setFixedWidth(200);
     speedSlider->setTracking(false);
     speedSlider->setRange(0, 1000);
-    speedSlider->setInvertedAppearance(true);
     QWidgetAction *speedAction = new QWidgetAction(this);
     speedAction->setDefaultWidget(speedSlider);
     ui->menuSpeed->addAction(speedAction);
@@ -75,7 +74,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->timer.setInterval(500);
     connect(&timer, &QTimer::timeout, this, &MainWindow::timerTimeout);
     // connect slider value changed to change generation speed
-    speedSlider->setValue(timer.interval());
+    speedSlider->setValue(speedSlider->maximum() - timer.interval());
     connect(speedSlider, &QSlider::valueChanged, this, &MainWindow::speedSliderChange);
 
     // connect menu actions
@@ -660,12 +659,12 @@ void MainWindow::createOrClearBoard(Board &board)
 /*slot*/ void MainWindow::speedSliderChange(int value)
 {
     // alter the timer timeout to correspond to the slider position
-    timer.setInterval(value);
+    timer.setInterval(speedSlider->maximum() - value);
 }
 
 /*slot*/ void MainWindow::actionFastest()
 {
-    speedSlider->setValue(0);
+    speedSlider->setValue(speedSlider->maximum());
     ui->actionDisplay->setChecked(false);
 }
 
