@@ -1,0 +1,6 @@
+# New configuration for `gprof`
+# ./mkspecs/features/prof.prf should be a symlink to this
+message("Setting options for `gprof`")
+QMAKE_CXXFLAGS += -pg
+QMAKE_CFLAGS += -pg
+QMAKE_LFLAGS += -pg

@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ./gprof
+gprof conwaylife | gprof2dot | xdot -
