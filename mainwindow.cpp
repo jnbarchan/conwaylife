@@ -7,6 +7,7 @@
 #include <QThread>
 #include <QWheelEvent>
 #include <QWidgetAction>
+#include <QActionGroup>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
